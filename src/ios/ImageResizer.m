@@ -56,22 +56,6 @@
             break;
     }
     
-    PHFetchResult *savedAssets = [PHAsset fetchAssetsWithLocalIdentifiers:@[fileName] options:nil];
-    [savedAssets enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL *stop) {
-        //this gets called for every asset from its localIdentifier you saved
-        
-        [[PHImageManager defaultManager]
-         requestImageDataForAsset:asset
-         options:imageRequestOptions
-         resultHandler:^(NSData *imageData, NSString *dataUTI,
-                         UIImageOrientation orientation,
-                         NSDictionary *info)
-         {
-             sourceImage  = [UIImage imageWithData:imageData];
-         }];
-        
-    }];
-    
     NSLog(@"image resizer:%@",  (sourceImage ? @"image exists" : @"null" ));
     
     UIImage *tempImage = nil;
